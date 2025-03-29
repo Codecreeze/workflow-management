@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
+import { styles } from "../../../styles/ButtonEdge.styles";
 
 // Node types available for adding
 const NODE_TYPES = [
@@ -187,7 +188,10 @@ export function ButtonEdge({
             onClick={handleClick}
           >
             <AddIcon
-              style={{ fontSize: 14, color: showOptions ? "#e35b5b" : "#666" }}
+              style={{ 
+                fontSize: styles.addIcon.fontSize, 
+                color: showOptions ? styles.addIcon.color(true) : styles.addIcon.color(false) 
+              }}
             />
           </IconButton>
 
@@ -232,7 +236,7 @@ export function ButtonEdge({
             >
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                  <span style={{ fontWeight: 500, fontSize: '14px' }}>Add Node</span>
+                  <span style={styles.addNodeText}>Add Node</span>
                   <IconButton size="small" onClick={handleCloseMenu}>
                     <CloseIcon fontSize="small" />
                   </IconButton>

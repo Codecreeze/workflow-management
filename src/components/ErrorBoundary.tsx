@@ -1,5 +1,6 @@
-import React, { Component, ErrorInfo, ReactNode, useEffect } from 'react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { styles } from '../styles/ErrorBoundary.styles';
 
 interface Props {
   children: ReactNode;
@@ -65,25 +66,14 @@ class ErrorBoundary extends Component<Props, State> {
       }
 
       return (
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh',
-            width: '100%',
-            p: 3,
-            backgroundColor: '#f9f9f9',
-          }}
-        >
-          <Typography variant="h4" color="error" gutterBottom>
+        <Box sx={styles.container}>
+          <Typography variant="h4" color="error" gutterBottom sx={styles.title}>
             Something went wrong
           </Typography>
-          <Typography variant="body1" sx={{ mb: 3, maxWidth: '600px', textAlign: 'center' }}>
+          <Typography variant="body1" sx={styles.message}>
             The application encountered an unexpected error. You can try to reset the component or return to the dashboard.
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
+          <Box sx={styles.buttonContainer}>
             <Button variant="contained" color="primary" onClick={this.handleReset}>
               Try Again
             </Button>
