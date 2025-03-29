@@ -184,6 +184,156 @@ const initialState: WorkflowState = {
         { id: 'e1-2', source: '1', target: '2' },
       ]
     },
+    {
+      id: '504',
+      name: 'HR Employee Onboarding',
+      description: 'Manages the process of onboarding new employees',
+      lastEdited: 'Ravi Desai | 09:30 IST - 01/06',
+      editor: 'Ravi Desai',
+      status: 'pending',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '505',
+      name: 'Customer Feedback Analysis',
+      description: 'Processes and categorizes customer feedback for insights',
+      lastEdited: 'Meera Joshi | 14:15 IST - 02/06',
+      editor: 'Meera Joshi',
+      status: 'passed',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '506',
+      name: 'Supply Chain Optimization',
+      description: 'Analyzes and optimizes the supply chain workflow',
+      lastEdited: 'Alok Nair | 11:20 IST - 31/05',
+      editor: 'Alok Nair',
+      status: 'failed',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '507',
+      name: 'Content Approval System',
+      description: 'Manages review and approval of marketing content',
+      lastEdited: 'Sanjana Reddy | 16:45 IST - 03/06',
+      editor: 'Sanjana Reddy',
+      status: 'pending',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '508',
+      name: 'Product Release Process',
+      description: 'Coordinates steps for new product versions',
+      lastEdited: 'Vikram Singh | 10:10 IST - 02/06',
+      editor: 'Vikram Singh',
+      status: 'passed',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '509',
+      name: 'Financial Report Generation',
+      description: 'Automates the monthly financial reporting process',
+      lastEdited: 'Priyanka Shah | 18:30 IST - 01/06',
+      editor: 'Priyanka Shah',
+      status: 'failed',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '510',
+      name: 'Customer Complaint Resolution',
+      description: 'Tracks customer complaint handling and resolution',
+      lastEdited: 'Ajay Mathur | 13:25 IST - 30/05',
+      editor: 'Ajay Mathur',
+      status: 'pending',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '511',
+      name: 'IT Service Request Processing',
+      description: 'Handles internal IT service requests and tickets',
+      lastEdited: 'Divya Sharma | 09:50 IST - 03/06',
+      editor: 'Divya Sharma',
+      status: 'passed',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '512',
+      name: 'Employee Performance Review',
+      description: 'Manages the employee evaluation and feedback process',
+      lastEdited: 'Anand Kumar | 15:05 IST - 29/05',
+      editor: 'Anand Kumar',
+      status: 'failed',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    },
+    {
+      id: '513',
+      name: 'Marketing Campaign Tracker',
+      description: 'Tracks and analyzes marketing campaign performance',
+      lastEdited: 'Leela Patel | 12:35 IST - 04/06',
+      editor: 'Leela Patel',
+      status: 'pending',
+      nodes: [
+        { id: '1', type: 'start', position: { x: 250, y: 5 } },
+        { id: '2', type: 'end', position: { x: 250, y: 200 } },
+      ],
+      edges: [
+        { id: 'e1-2', source: '1', target: '2' },
+      ]
+    }
   ],
   currentWorkflow: null,
   loading: false,

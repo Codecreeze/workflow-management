@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { 
   useGetWorkflowsQuery,
   useGetWorkflowByIdQuery,
@@ -9,9 +10,14 @@ import {
 } from '../redux/api/workflowApi';
 import { Workflow } from '../types';
 import { handleApiError } from '../utils/apiUtils';
+import { RootState } from '../redux/store';
 
 export function useWorkflows() {
   const [selectedWorkflowId, setSelectedWorkflowId] = useState<string | null>(null);
+  const [apiError, setApiError] = useState<string | null>(null);
+  
+  // Get static workflows from Redux store as fallback
+  const staticWorkflows = useSelector((state: RootState) => state.workflow.workflows);
   
   // Get all workflows
   const { 
@@ -21,6 +27,15 @@ export function useWorkflows() {
     error: workflowsError,
     refetch: refetchWorkflows 
   } = useGetWorkflowsQuery();
+
+  // Set API error when fetch fails
+  useEffect(() => {
+    if (isWorkflowsError && workflowsError) {
+      setApiError(handleApiError(workflowsError));
+    } else {
+      setApiError(null);
+    }
+  }, [isWorkflowsError, workflowsError]);
 
   // Get a specific workflow by ID
   const {
@@ -109,11 +124,14 @@ export function useWorkflows() {
     }
   }, [refetchWorkflows, refetchSelected, selectedWorkflowId]);
 
+  // Use static data from Redux if API fails, otherwise use API data
+  const effectiveWorkflows = isWorkflowsError ? staticWorkflows : (workflowsData?.workflows || []);
+
   return {
     // Data
-    workflows: workflowsData?.workflows || [],
-    totalWorkflows: workflowsData?.total || 0,
-    selectedWorkflow,
+    workflows: effectiveWorkflows,
+    totalWorkflows: effectiveWorkflows.length,
+    selectedWorkflow: isSelectedError ? null : selectedWorkflow,
     selectedWorkflowId,
     
     // Loading states
@@ -125,7 +143,7 @@ export function useWorkflows() {
     
     // Error states
     isError: isWorkflowsError || isSelectedError,
-    error: workflowsError || selectedError,
+    error: apiError || selectedError,
     
     // Actions
     selectWorkflow,

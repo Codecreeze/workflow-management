@@ -1,13 +1,12 @@
 import {
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
+  Box,
+  IconButton,
+  Typography,
   Button,
   CircularProgress
 } from '@mui/material';
-import { styles } from '../../styles/Modal.styles';
+import CloseIcon from '@mui/icons-material/Close';
 import { Workflow } from '../../types';
 
 export interface DeleteWorkflowModalProps {
@@ -31,32 +30,98 @@ const DeleteWorkflowModal = ({
       onClose={isDeleting ? undefined : onClose}
       aria-labelledby="delete-dialog-title"
       aria-describedby="delete-dialog-description"
+      PaperProps={{
+        sx: {
+          borderRadius: '12px',
+          maxWidth: '550px',
+          width: '100%',
+          p: 0
+        }
+      }}
     >
-      <DialogTitle id="delete-dialog-title" sx={styles.dialogTitle}>
-        {`Are You Sure You Want To Delete '${workflow?.name || "Process_Name"}'?`}
-      </DialogTitle>
-      <DialogContent sx={styles.dialogContent}>
-        <DialogContentText id="delete-dialog-description">
+      <Box sx={{ 
+        position: 'absolute',
+        right: 8,
+        top: 8
+      }}>
+        <IconButton onClick={onClose} size="large" disabled={isDeleting}>
+          <CloseIcon />
+        </IconButton>
+      </Box>
+
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '30px 40px 20px 40px',
+      }}>
+        <Typography variant="h6" sx={{ 
+          fontWeight: 500,
+          fontSize: '18px',
+          textAlign: 'center',
+          mb: 2
+        }}>
+          {`"Are You Sure You Want To Delete '${workflow?.name || "Process_Name"}'?`}
+        </Typography>
+
+        <Typography color="error" sx={{ 
+          textAlign: 'center',
+          mt: 2,
+          color: '#f44336',
+          fontWeight: 400,
+          fontSize: '16px'
+        }}>
           You Cannot Undo This Step
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions sx={styles.dialogActions}>
-        <Button 
-          onClick={onClose} 
-          sx={styles.cancelButton}
-          disabled={isDeleting}
-        >
-          Cancel
-        </Button>
-        <Button 
-          onClick={onConfirm} 
-          sx={styles.deleteButton}
-          disabled={isDeleting}
-          startIcon={isDeleting ? <CircularProgress size={16} color="inherit" /> : null}
-        >
-          {isDeleting ? 'Deleting...' : 'Delete'}
-        </Button>
-      </DialogActions>
+        </Typography>
+
+        <Box sx={{ 
+          display: 'flex',
+          justifyContent: 'flex-end',
+          gap: 2,
+          mt: 6,
+          width: '100%'
+        }}>
+          <Button 
+            onClick={onConfirm}
+            disabled={isDeleting}
+            sx={{
+              borderRadius: '4px',
+              fontWeight: 500,
+              px: 3,
+              py: 1,
+              border: '1px solid #f44336',
+              backgroundColor: 'white',
+              color: '#f44336',
+              '&:hover': {
+                backgroundColor: '#fff1f0',
+              },
+              minWidth: '80px'
+            }}
+            startIcon={isDeleting ? <CircularProgress size={16} color="error" /> : null}
+          >
+            {isDeleting ? 'Deleting...' : 'Yes'}
+          </Button>
+          <Button 
+            onClick={onClose}
+            disabled={isDeleting}
+            sx={{
+              borderRadius: '4px',
+              fontWeight: 500,
+              px: 3,
+              py: 1,
+              backgroundColor: 'white',
+              border: '1px solid #ccc',
+              color: 'black',
+              '&:hover': {
+                backgroundColor: '#f5f5f5',
+              },
+              minWidth: '80px'
+            }}
+          >
+            No
+          </Button>
+        </Box>
+      </Box>
     </Dialog>
   );
 };

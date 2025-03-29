@@ -83,6 +83,13 @@ const Dashboard = () => {
     isDeleting
   } = useWorkflows();
 
+  // Show error snackbar when API fails
+  useEffect(() => {
+    if (isError && error) {
+      showSnackbar(`Fetch Failed: ${error}`, "error");
+    }
+  }, [isError, error]);
+
   // Use debounce hook for search
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
@@ -268,13 +275,6 @@ const Dashboard = () => {
             </Box>
           </Box>
 
-          {/* Error message if API fails */}
-          {isError && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              Failed to load workflows: {error ? JSON.stringify(error) : 'Unknown error'}
-            </Alert>
-          )}
-
           {/* Loading indicator */}
           {isLoading ? (
             <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
@@ -428,9 +428,11 @@ const Dashboard = () => {
         >
           <MenuItem onClick={handleDeleteClick}>
             <ListItemIcon>
-              <DeleteIcon fontSize="small" />
+              <DeleteIcon fontSize="small" sx={{ color: '#f44336' }} />
             </ListItemIcon>
-            <ListItemText>Delete</ListItemText>
+            <ListItemText primaryTypographyProps={{ sx: { color: '#f44336' } }}>
+              Delete
+            </ListItemText>
           </MenuItem>
         </Menu>
 
